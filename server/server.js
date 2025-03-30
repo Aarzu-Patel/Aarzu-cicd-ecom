@@ -32,7 +32,7 @@ const PORT = process.env.PORT || 5001;
 
 app.use(
   cors({
-    origin: "http://localhost:5173/", // Allows all origins
+    origin: "https://frontendapp-cah7hsecf7akcefc.canadacentral-01.azurewebsites.net", // Allows all origins
     methods: ["GET", "POST", "DELETE", "PUT"],
     allowedHeaders: [
       "Content-Type",
@@ -41,7 +41,7 @@ app.use(
       "Expires",
       "Pragma",
     ],
-    credentials: false, // Must be false when using '*' for origin
+    credentials: true, // Must be false when using '*' for origin
   })
 );
 
