@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - frontendapp
+name: Build and deploy Node.js app to Azure Web App - backendapp
 
 on:
   push:
@@ -25,24 +25,21 @@ jobs:
 
       - name: npm install, build, and test
         run: |
-          cd client
+          cd server
           npm install
-          npm run build || exit 1  # Fail if build fails
+          npm run build --if-present
           npm run test --if-present || echo "Skipping tests..."
 
       - name: Zip artifact for deployment
         run: |
-          cd client
-          ls -la dist  # Debug: Ensure the dist folder exists
-          zip -r release.zip ./dist
-          ls -la  # Debug: Confirm release.zip is created
-
+          cd server
+          zip -r release.zip ./*
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: client/release.zip
+          path: server/release.zip
 
   deploy:
     runs-on: ubuntu-latest
@@ -64,7 +61,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'frontendapp'
+          app-name: 'backendapp'
           slot-name: 'Production'
-          package: release.zip
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_93DAE751F2DD4CE890A483713F05B0C4 }}
+          package: .
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BF5650A3DC0C48C2BC62A9F76E977007 }}
