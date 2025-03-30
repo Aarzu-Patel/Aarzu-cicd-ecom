@@ -27,19 +27,22 @@ jobs:
         run: |
           cd client
           npm install
-          npm run build --if-present
+          npm run build || exit 1  # Fail if build fails
           npm run test --if-present || echo "Skipping tests..."
 
       - name: Zip artifact for deployment
         run: |
           cd client
-          zip -r release.zip ./*
+          ls -la dist  # Debug: Ensure the dist folder exists
+          zip -r release.zip ./dist
+          ls -la  # Debug: Confirm release.zip is created
+
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: node-app
-          path: release.zip
+          path: client/release.zip
 
   deploy:
     runs-on: ubuntu-latest
