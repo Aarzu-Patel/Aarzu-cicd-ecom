@@ -32,7 +32,7 @@ jobs:
 
       - name: Zip artifact for deployment
         run: |
-          cd client/dist
+          cd client
           zip -r release.zip ./*
 
       - name: Upload artifact for deployment job
