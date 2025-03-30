@@ -63,5 +63,5 @@ jobs:
         with:
           app-name: 'frontendapp'
           slot-name: 'Production'
-          package: .
+          package: release.zip
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_93DAE751F2DD4CE890A483713F05B0C4 }}
