@@ -10,7 +10,7 @@ export const addToCart = createAsyncThunk(
   "cart/addToCart",
   async ({ userId, productId, quantity }) => {
     const response = await axios.post(
-      "https://backendapp-dddthqaxbrasahbh.canadacentral-01.azurewebsites.net//api/shop/cart/add",
+      "backendapp-dddthqaxbrasahbh.canadacentral-01.azurewebsites.net/api/shop/cart/add",
       {
         userId,
         productId,
@@ -26,7 +26,7 @@ export const fetchCartItems = createAsyncThunk(
   "cart/fetchCartItems",
   async (userId) => {
     const response = await axios.get(
-      `https://backendapp-dddthqaxbrasahbh.canadacentral-01.azurewebsites.net//api/shop/cart/get/${userId}`
+      `backendapp-dddthqaxbrasahbh.canadacentral-01.azurewebsites.net/api/shop/cart/get/${userId}`
     );
 
     return response.data;
@@ -37,7 +37,7 @@ export const deleteCartItem = createAsyncThunk(
   "cart/deleteCartItem",
   async ({ userId, productId }) => {
     const response = await axios.delete(
-      `https://backendapp-dddthqaxbrasahbh.canadacentral-01.azurewebsites.net//api/shop/cart/${userId}/${productId}`
+      `backendapp-dddthqaxbrasahbh.canadacentral-01.azurewebsites.net/api/shop/cart/${userId}/${productId}`
     );
 
     return response.data;
@@ -48,7 +48,7 @@ export const updateCartQuantity = createAsyncThunk(
   "cart/updateCartQuantity",
   async ({ userId, productId, quantity }) => {
     const response = await axios.put(
-      "https://backendapp-dddthqaxbrasahbh.canadacentral-01.azurewebsites.net//api/shop/cart/update-cart",
+      "backendapp-dddthqaxbrasahbh.canadacentral-01.azurewebsites.net/api/shop/cart/update-cart",
       {
         userId,
         productId,

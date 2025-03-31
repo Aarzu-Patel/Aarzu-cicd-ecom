@@ -10,7 +10,7 @@ export const addReview = createAsyncThunk(
   "/order/addReview",
   async (formdata) => {
     const response = await axios.post(
-      `https://backendapp-dddthqaxbrasahbh.canadacentral-01.azurewebsites.net//api/shop/review/add`,
+      `backendapp-dddthqaxbrasahbh.canadacentral-01.azurewebsites.net/api/shop/review/add`,
       formdata
     );
 
@@ -20,7 +20,7 @@ export const addReview = createAsyncThunk(
 
 export const getReviews = createAsyncThunk("/order/getReviews", async (id) => {
   const response = await axios.get(
-    `https://backendapp-dddthqaxbrasahbh.canadacentral-01.azurewebsites.net//api/shop/review/${id}`
+    `backendapp-dddthqaxbrasahbh.canadacentral-01.azurewebsites.net/api/shop/review/${id}`
   );
 
   return response.data;
